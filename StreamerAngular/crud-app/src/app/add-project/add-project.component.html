@@ -1,0 +1,64 @@
+<app-title [title]='title'></app-title>
+<form [formGroup]="registerForm">
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label>Nome do Projeto</label>
+      <input type="text" class="form-control"
+       [ngClass]="{'is-invalid': registerForm.get('name').errors && registerForm.get('name').touched}" formControlName="name">
+       <div *ngIf="registerForm.get('name').hasError('required') && registerForm.get('name').touched" class="invalid-feedback">Required</div>
+
+      <div *ngIf="registerForm.get('name').hasError('minlength') && registerForm.get('name').touched" class="invalid-feedback">Nome deve ter no mínimo 3 letras</div>
+
+      <div *ngIf="registerForm.get('name').hasError('maxlength') && registerForm.get('name').touched" class="invalid-feedback">Nome deve ter no máximo 30 letras</div>
+    </div>
+  </div>  
+
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <label>Image</label>
+      <input type="text" class="form-control"
+      [ngClass]="{'is-invalid': registerForm.get('image').errors && registerForm.get('image').touched}" formControlName="image">
+      <div class="invalid-feedback">Required</div>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label>Why</label>
+      <input type="text" class="form-control" 
+      [ngClass]="{'is-invalid': registerForm.get('why').errors && registerForm.get('why').touched}" formControlName="why">
+      <div class="invalid-feedback">Required</div>
+    </div>
+  
+
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label>What</label>
+      <input type="text" class="form-control" 
+      [ngClass]="{'is-invalid': registerForm.get('what').errors && registerForm.get('what').touched}" formControlName="what">
+      <div class="invalid-feedback">Required</div>
+    </div>
+
+    <div class="form-group col-md-9">
+      <label>WhatWillWeDo</label>
+      <input type="text" class="form-control" 
+      [ngClass]="{'is-invalid': registerForm.get('whatWillWeDo').errors && registerForm.get('whatWillWeDo').touched}" formControlName="whatWillWeDo">
+      <div class="invalid-feedback">Required</div>
+    </div>
+
+    <div class="form-group col-md-9">
+      <label>CourseId</label>
+      <input type="number" class="form-control" 
+      [ngClass]="{'is-invalid': registerForm.get('courseId').errors && registerForm.get('courseId').touched}" formControlName="courseId">
+      <div class="invalid-feedback">Required</div>
+    </div>
+  </div>    
+  </div>   
+</form>
+<br>
+<button class="btn btn-primary" [disabled]="!registerForm.valid" (click)="salvarAlteracao()">
+  Criar Projeto
+</button>
+<br>
+<br>
+
+<p>Form Value: {{registerForm.value | json}}</p>
+<p>Form Status: {{registerForm.status | json}}</p>
